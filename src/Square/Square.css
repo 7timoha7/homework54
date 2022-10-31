@@ -14,6 +14,16 @@
     margin: 1px;
 }
 
+.square-red {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: red;
+    margin: 1px;
+}
+
+
+
 .square-deck{
     width: 140px;
     height: 140px;

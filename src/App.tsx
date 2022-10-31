@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import Square from "./Square/Square";
 import {SquareType} from './types';
+import BtnRestart from "./BtnRestart/BtnRestart";
+import Attempts from "./Atempts/Attempts";
 
 const createItems = () => {
   const random = Math.floor(Math.random() * (36 + 1))
@@ -19,11 +21,16 @@ const createItems = () => {
 
 function App() {
   const [items, setItems] = useState(createItems());
+  const [attempts, setAttempts] = useState(0);
 
   const openSquare = (id:number) => {
     const itemsCopy = [...items];
     itemsCopy[id].clicked = true;
     setItems(itemsCopy);
+
+    let attemptsCopy = attempts;
+    attemptsCopy++;
+    setAttempts(attemptsCopy);
   }
 
   const printSquare = items.map((item) => {
@@ -32,11 +39,19 @@ function App() {
     )
   })
 
+  const btnRestart = ()=> {
+    setItems(createItems);
+    const attemptsCopy = 0;
+    setAttempts(attemptsCopy);
+  }
+
   return (
     <div className="App">
       <div className='square-deck'>
         {printSquare}
       </div>
+      <Attempts attempts={attempts}/>
+      <BtnRestart onClickBtn={btnRestart}/>
     </div>
   );
 }

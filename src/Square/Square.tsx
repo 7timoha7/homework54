@@ -9,7 +9,9 @@ interface Props {
 
 const Square: React.FC<Props> =(props)=> {
   let className = 'square';
-  if (props.square.clicked){
+  if (props.square.clicked && props.square.hasItem){
+    className = 'square-red';
+  } else  if (props.square.clicked){
     className = 'square-black';
   }
   return (
