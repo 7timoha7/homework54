@@ -1,0 +1,12 @@
+.bnt-restart {
+    border: none;
+    width: 70px;
+    height: 40px;
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(255, 0, 90));
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.bnt-restart:active {
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(128, 4, 44));
+}

@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
+import {SquareType} from '../../types';
+import Attempts from "../../components/Atempts/Attempts";
+import Deck from "../../components/Deck/Deck";
+import Victory from "../../components/Victory/Victory";
 import './App.css';
-import Square from "./Square/Square";
-import {SquareType} from './types';
-import BtnRestart from "./BtnRestart/BtnRestart";
-import Attempts from "./Atempts/Attempts";
 
 const createItems = () => {
   const random = Math.floor(Math.random() * (36 + 1))
   const itemsDeck: SquareType[] = [];
   for (let i = 0; i < 36; i++) {
     const newItem: SquareType = {hasItem: false, clicked: false, id: i};
-
     if (i === random) {
       newItem.hasItem = true;
     }
@@ -23,23 +22,19 @@ function App() {
   const [items, setItems] = useState(createItems());
   const [attempts, setAttempts] = useState(0);
 
-  const openSquare = (id:number) => {
+  const openSquare = (id: number) => {
+    let attemptsCopy = attempts;
+    if (!items[id].clicked) {
+      attemptsCopy++;
+    }
+    setAttempts(attemptsCopy);
+
     const itemsCopy = [...items];
     itemsCopy[id].clicked = true;
     setItems(itemsCopy);
-
-    let attemptsCopy = attempts;
-    attemptsCopy++;
-    setAttempts(attemptsCopy);
   }
 
-  const printSquare = items.map((item) => {
-    return (
-      <Square key={item.id} square={item} onClicked={openSquare}/>
-    )
-  })
-
-  const btnRestart = ()=> {
+  const btnRestart = () => {
     setItems(createItems);
     const attemptsCopy = 0;
     setAttempts(attemptsCopy);
@@ -47,11 +42,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className='square-deck'>
-        {printSquare}
-      </div>
-      <Attempts attempts={attempts}/>
-      <BtnRestart onClickBtn={btnRestart}/>
+      <Deck squares={items} onClicked={openSquare}/>
+      <Attempts attempts={attempts} onClickBtn={btnRestart}/>
+      <Victory square={items} onClickBtn={btnRestart}/>
     </div>
   );
 }

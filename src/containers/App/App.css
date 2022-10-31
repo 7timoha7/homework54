@@ -1,0 +1,13 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+body {
+    background: url("https://legalnibukmekery.com/wp-content/uploads/2022/02/online_slots_screen.jpeg");
+    background-size: cover;
+}
+

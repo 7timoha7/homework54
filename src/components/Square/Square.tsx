@@ -1,17 +1,17 @@
-import './Square.css';
-import {SquareType} from "../types";
 import React from "react";
+import {SquareType} from "../../types";
+import './Square.css';
 
 interface Props {
   square: SquareType;
   onClicked: (id: number) => void;
 }
 
-const Square: React.FC<Props> =(props)=> {
+const Square: React.FC<Props> = (props) => {
   let className = 'square';
-  if (props.square.clicked && props.square.hasItem){
+  if (props.square.clicked && props.square.hasItem) {
     className = 'square-red';
-  } else  if (props.square.clicked){
+  } else if (props.square.clicked) {
     className = 'square-black';
   }
   return (
